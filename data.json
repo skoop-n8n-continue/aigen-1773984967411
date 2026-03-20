@@ -1,0 +1,177 @@
+{
+  "app_id": "menu-app-001",
+  "document_version": 1,
+  "sections": {
+    "app_settings": {
+      "primary_color": { "type": "color", "label": "Primary Color", "value": "#dea34f" },
+      "background_color": { "type": "color", "label": "Background Color", "value": "#000000" },
+      "card_background": { "type": "color", "label": "Card Background", "value": "#1a1a1a" },
+      "text_color": { "type": "color", "label": "Text Color", "value": "#ffffff" },
+      "indica_color": { "type": "color", "label": "Indica Color", "value": "#5d7990" },
+      "hybrid_color": { "type": "color", "label": "Hybrid Color", "value": "#778970" },
+      "sativa_color": { "type": "color", "label": "Sativa Color", "value": "#dea34f" }
+    },
+    "categories": {
+      "type": "collection",
+      "label": "Categories",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "name": { "type": "text", "label": "Category Name" },
+        "sort_order": { "type": "number", "label": "Sort Order" }
+      },
+      "value": [
+        { "id": "cat_a1b2c3", "name": "PUFFY", "sort_order": 1 },
+        { "id": "cat_d4e5f6", "name": "GRRIFTERS", "sort_order": 2 }
+      ]
+    },
+    "products": {
+      "type": "collection",
+      "label": "Products",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "name": { "type": "text", "label": "Product Name" },
+        "category": { "type": "text", "label": "Category ID" },
+        "brand": { "type": "text", "label": "Brand" },
+        "strain_type": { "type": "enum", "label": "Strain Type", "meta": { "options": ["INDICA", "SATIVA", "HYBRID"] } },
+        "thc_percentage": { "type": "number", "label": "THC %", "meta": { "format": "percentage" } },
+        "price": { "type": "number", "label": "Price", "meta": { "format": "currency" } },
+        "weight": { "type": "text", "label": "Weight" },
+        "sort_order": { "type": "number", "label": "Sort Order" }
+      },
+      "value": [
+        {
+          "id": "prod_a1b2c3",
+          "name": "GASTRO POP 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "INDICA",
+          "thc_percentage": 31.26,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 1
+        },
+        {
+          "id": "prod_d4e5f6",
+          "name": "GELATO 33 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "HYBRID",
+          "thc_percentage": 31.17,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 2
+        },
+        {
+          "id": "prod_g7h8i9",
+          "name": "GUAVA HAZE 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "SATIVA",
+          "thc_percentage": 30.88,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 3
+        },
+        {
+          "id": "prod_j1k2l3",
+          "name": "PINK TAFFY 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "HYBRID",
+          "thc_percentage": 26.22,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 4
+        },
+        {
+          "id": "prod_m4n5o6",
+          "name": "BLUE DREAM 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "SATIVA",
+          "thc_percentage": 33.15,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 5
+        },
+        {
+          "id": "prod_p7q8r9",
+          "name": "DIRTY SOUTH GUMBO 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "INDICA",
+          "thc_percentage": 36.59,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 6
+        },
+        {
+          "id": "prod_s1t2u3",
+          "name": "DIRTY ZPRITE 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "SATIVA",
+          "thc_percentage": 33.9,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 7
+        },
+        {
+          "id": "prod_v4w5x6",
+          "name": "EXOTICS JAMAICAN GELATO 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_a1b2c3",
+          "brand": "PUFFY",
+          "strain_type": "HYBRID",
+          "thc_percentage": 31.81,
+          "price": 45,
+          "weight": "7g",
+          "sort_order": 8
+        },
+        {
+          "id": "prod_y7z8a9",
+          "name": "BIG LEAGUE CHOO 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_d4e5f6",
+          "brand": "GRIFTERS",
+          "strain_type": "HYBRID",
+          "thc_percentage": 30.63,
+          "price": 49,
+          "weight": "7g",
+          "sort_order": 9
+        },
+        {
+          "id": "prod_b1c2d3",
+          "name": "BUBBLEGUM OG 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_d4e5f6",
+          "brand": "GRIFTERS",
+          "strain_type": "INDICA",
+          "thc_percentage": 31.52,
+          "price": 49,
+          "weight": "7g",
+          "sort_order": 10
+        },
+        {
+          "id": "prod_e4f5g6",
+          "name": "LEMON CHERRY GELATO 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_d4e5f6",
+          "brand": "GRIFTERS",
+          "strain_type": "HYBRID",
+          "thc_percentage": 30.71,
+          "price": 49,
+          "weight": "7g",
+          "sort_order": 11
+        },
+        {
+          "id": "prod_h7i8j9",
+          "name": "SLAP CITY GAS 7G PREMIUM INDOOR FLOWER",
+          "category": "cat_d4e5f6",
+          "brand": "GRIFTERS",
+          "strain_type": "INDICA",
+          "thc_percentage": 32.09,
+          "price": 49,
+          "weight": "7g",
+          "sort_order": 12
+        }
+      ]
+    }
+  }
+}

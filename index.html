@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Skoop Menu</title>
+    <style>
+        /* Base reset and fonts */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden; /* No manual scrolling for digital signage */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* App container hidden until data loads */
+        #app-container {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 2vw;
+            /* Colors will be set by JS */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        #app-container.loaded {
+            opacity: 1;
+        }
+
+        /* Main Grid Layout */
+        .menu-grid {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* For auto-scrolling if needed */
+            position: relative;
+        }
+
+        .scroll-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 2vw;
+            width: 100%;
+            height: max-content;
+        }
+
+        .category-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Category Header */
+        .category-header {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: var(--bg-color); /* Usually dark text on light primary bg */
+            padding: 12px 16px;
+            font-weight: bold;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+        }
+
+        .category-name {
+            flex: 1;
+        }
+
+        .header-thc {
+            width: 100px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .header-price {
+            width: 100px;
+            text-align: right;
+            font-size: 1rem;
+        }
+
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Product Row */
+        .product-row {
+            display: flex;
+            align-items: stretch;
+            background-color: var(--card-bg);
+            border-left: 8px solid; /* Color set inline based on strain */
+            padding: 12px 16px;
+            min-height: 70px;
+        }
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            line-height: 1.3;
+        }
+
+        .product-brand {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+
+        .product-thc {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .product-price-section {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .product-weight {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Auto-scroll animation class */
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(var(--scroll-dist)); }
+        }
+
+        .scrolling {
+            animation: scrollUp linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        <div class="menu-grid" id="menu-grid">
+            <div class="scroll-wrapper" id="scroll-wrapper">
+                <!-- Categories will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch and parse data.json as required by Skoop
+        async function loadAppData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Failed to load app data:', error);
+                return null;
+            }
+        }
+
+        async function init() {
+            const data = await loadAppData();
+            if (!data) return;
+
+            // Apply data-driven styles
+            const settings = data.sections.app_settings;
+            const root = document.documentElement;
+
+            root.style.setProperty('--primary-color', settings.primary_color.value);
+            root.style.setProperty('--bg-color', settings.background_color.value);
+            root.style.setProperty('--card-bg', settings.card_background.value);
+            root.style.setProperty('--text-color', settings.text_color.value);
+
+            const strainColors = {
+                'INDICA': settings.indica_color.value,
+                'HYBRID': settings.hybrid_color.value,
+                'SATIVA': settings.sativa_color.value
+            };
+
+            const categories = data.sections.categories.value.sort((a, b) => a.sort_order - b.sort_order);
+            const products = data.sections.products.value.sort((a, b) => a.sort_order - b.sort_order);
+
+            const wrapper = document.getElementById('scroll-wrapper');
+
+            categories.forEach(category => {
+                const catProducts = products.filter(p => p.category === category.id);
+                if (catProducts.length === 0) return;
+
+                const column = document.createElement('div');
+                column.className = 'category-column';
+
+                // Header
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = `
+                    <div class="category-name">${category.name}</div>
+                    <div class="header-thc">THC</div>
+                    <div class="header-price">Price</div>
+                `;
+                column.appendChild(header);
+
+                // Products list
+                const list = document.createElement('div');
+                list.className = 'product-list';
+
+                catProducts.forEach(product => {
+                    const row = document.createElement('div');
+                    row.className = 'product-row';
+
+                    // Assign border color based on strain type
+                    const borderColor = strainColors[product.strain_type] || settings.primary_color.value;
+                    row.style.borderLeftColor = borderColor;
+
+                    row.innerHTML = `
+                        <div class="product-info">
+                            <div class="product-name">
+                                ${product.name}
+                                <span class="product-brand">${product.brand}</span>
+                            </div>
+                        </div>
+                        <div class="product-thc">${product.thc_percentage}%</div>
+                        <div class="product-price-section">
+                            <div class="product-price">$${product.price}</div>
+                            <div class="product-weight">${product.weight}</div>
+                        </div>
+                    `;
+                    list.appendChild(row);
+                });
+
+                column.appendChild(list);
+                wrapper.appendChild(column);
+            });
+
+            // Reveal the app
+            document.getElementById('app-container').classList.add('loaded');
+
+            // Setup Auto-scroll if content overflows
+            setTimeout(setupAutoScroll, 500);
+        }
+
+        function setupAutoScroll() {
+            const grid = document.getElementById('menu-grid');
+            const wrapper = document.getElementById('scroll-wrapper');
+
+            const gridHeight = grid.clientHeight;
+            const wrapperHeight = wrapper.clientHeight;
+
+            if (wrapperHeight > gridHeight) {
+                // Clone the content for seamless scrolling
+                const clone = wrapper.cloneNode(true);
+                clone.id = 'scroll-wrapper-clone';
+                wrapper.parentNode.appendChild(clone);
+
+                // Adjust wrapper to stack vertically
+                wrapper.parentNode.style.display = 'flex';
+                wrapper.parentNode.style.flexDirection = 'column';
+                wrapper.parentNode.style.gap = '2vw';
+
+                const scrollDistance = wrapperHeight + (window.innerWidth * 0.02); // Add gap
+
+                document.documentElement.style.setProperty('--scroll-dist', `-${scrollDistance}px`);
+
+                // Duration based on height (slower for longer content)
+                const duration = scrollDistance / 30; // 30px per second
+
+                wrapper.style.animation = `scrollUp ${duration}s linear infinite`;
+                clone.style.animation = `scrollUp ${duration}s linear infinite`;
+            }
+        }
+
+        // Run initialization
+        init();
+    </script>
+</body>
+</html>
