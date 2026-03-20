@@ -78,21 +78,21 @@
 
         .category-name {
             flex: 1;
-            color: var(--header-cat-color);
+            color: var(--header-text-color);
         }
 
         .header-thc {
             width: 100px;
             text-align: center;
             font-size: 1rem;
-            color: var(--header-thc-color);
+            color: var(--header-text-color);
         }
 
         .header-price {
             width: 100px;
             text-align: right;
             font-size: 1rem;
-            color: var(--header-price-color);
+            color: var(--header-text-color);
         }
 
         /* Product List */
@@ -204,9 +204,7 @@
             const root = document.documentElement;
 
             root.style.setProperty('--primary-color', settings.primary_color.value);
-            root.style.setProperty('--header-cat-color', settings.header_category_color.value);
-            root.style.setProperty('--header-thc-color', settings.header_thc_color.value);
-            root.style.setProperty('--header-price-color', settings.header_price_color.value);
+            root.style.setProperty('--header-text-color', settings.header_text_color.value);
             root.style.setProperty('--bg-color', settings.background_color.value);
             root.style.setProperty('--card-bg', settings.card_background.value);
             root.style.setProperty('--text-color', settings.text_color.value);

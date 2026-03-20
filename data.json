@@ -8,19 +8,9 @@
         "label": "Primary Color",
         "value": "#dea34f"
       },
-      "header_category_color": {
+      "header_text_color": {
         "type": "color",
-        "label": "Header Category Color",
-        "value": "#000000"
-      },
-      "header_thc_color": {
-        "type": "color",
-        "label": "Header THC Color",
-        "value": "#000000"
-      },
-      "header_price_color": {
-        "type": "color",
-        "label": "Header Price Color",
+        "label": "Header Text Color",
         "value": "#000000"
       },
       "background_color": {
