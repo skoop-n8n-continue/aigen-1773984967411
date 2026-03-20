@@ -8,6 +8,11 @@
         "label": "Primary Color",
         "value": "#dea34f"
       },
+      "header_text_color": {
+        "type": "color",
+        "label": "Header Text Color",
+        "value": "#000000"
+      },
       "background_color": {
         "type": "color",
         "label": "Background Color",
