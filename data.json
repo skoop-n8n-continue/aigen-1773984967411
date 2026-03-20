@@ -6,7 +6,7 @@
       "primary_color": {
         "type": "color",
         "label": "Primary Color",
-        "value": "#4f7fde"
+        "value": "#dda327"
       },
       "header_text_color": {
         "type": "color",
@@ -41,7 +41,7 @@
       "sativa_color": {
         "type": "color",
         "label": "Sativa Color",
-        "value": "#31774a"
+        "value": "#dabe2f"
       }
     },
     "categories": {
