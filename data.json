@@ -11,7 +11,7 @@
       "background_color": {
         "type": "color",
         "label": "Background Color",
-        "value": "#000000"
+        "value": "#d45454"
       },
       "card_background": {
         "type": "color",
