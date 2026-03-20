@@ -3,40 +3,125 @@
   "document_version": 1,
   "sections": {
     "app_settings": {
-      "primary_color": { "type": "color", "label": "Primary Color", "value": "#dea34f" },
-      "background_color": { "type": "color", "label": "Background Color", "value": "#000000" },
-      "card_background": { "type": "color", "label": "Card Background", "value": "#1a1a1a" },
-      "text_color": { "type": "color", "label": "Text Color", "value": "#ffffff" },
-      "indica_color": { "type": "color", "label": "Indica Color", "value": "#5d7990" },
-      "hybrid_color": { "type": "color", "label": "Hybrid Color", "value": "#778970" },
-      "sativa_color": { "type": "color", "label": "Sativa Color", "value": "#dea34f" }
+      "primary_color": {
+        "type": "color",
+        "label": "Primary Color",
+        "value": "#dea34f"
+      },
+      "background_color": {
+        "type": "color",
+        "label": "Background Color",
+        "value": "#000000"
+      },
+      "card_background": {
+        "type": "color",
+        "label": "Card Background",
+        "value": "#1a1a1a"
+      },
+      "text_color": {
+        "type": "color",
+        "label": "Text Color",
+        "value": "#ffffff"
+      },
+      "indica_color": {
+        "type": "color",
+        "label": "Indica Color",
+        "value": "#5d7990"
+      },
+      "hybrid_color": {
+        "type": "color",
+        "label": "Hybrid Color",
+        "value": "#778970"
+      },
+      "sativa_color": {
+        "type": "color",
+        "label": "Sativa Color",
+        "value": "#dea34f"
+      }
     },
     "categories": {
       "type": "collection",
       "label": "Categories",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "name": { "type": "text", "label": "Category Name" },
-        "sort_order": { "type": "number", "label": "Sort Order" }
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "name": {
+          "type": "text",
+          "label": "Category Name"
+        },
+        "sort_order": {
+          "type": "number",
+          "label": "Sort Order"
+        }
       },
       "value": [
-        { "id": "cat_a1b2c3", "name": "PUFFY", "sort_order": 1 },
-        { "id": "cat_d4e5f6", "name": "GRRIFTERS", "sort_order": 2 }
+        {
+          "id": "cat_a1b2c3",
+          "name": "PUFFY",
+          "sort_order": 1
+        },
+        {
+          "id": "cat_d4e5f6",
+          "name": "GRRIFTERS",
+          "sort_order": 2
+        }
       ]
     },
     "products": {
       "type": "collection",
       "label": "Products",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "name": { "type": "text", "label": "Product Name" },
-        "category": { "type": "text", "label": "Category ID" },
-        "brand": { "type": "text", "label": "Brand" },
-        "strain_type": { "type": "enum", "label": "Strain Type", "meta": { "options": ["INDICA", "SATIVA", "HYBRID"] } },
-        "thc_percentage": { "type": "number", "label": "THC %", "meta": { "format": "percentage" } },
-        "price": { "type": "number", "label": "Price", "meta": { "format": "currency" } },
-        "weight": { "type": "text", "label": "Weight" },
-        "sort_order": { "type": "number", "label": "Sort Order" }
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "name": {
+          "type": "text",
+          "label": "Product Name"
+        },
+        "category": {
+          "type": "text",
+          "label": "Category ID"
+        },
+        "brand": {
+          "type": "text",
+          "label": "Brand"
+        },
+        "strain_type": {
+          "type": "enum",
+          "label": "Strain Type",
+          "meta": {
+            "options": [
+              "INDICA",
+              "SATIVA",
+              "HYBRID"
+            ]
+          }
+        },
+        "thc_percentage": {
+          "type": "number",
+          "label": "THC %",
+          "meta": {
+            "format": "percentage"
+          }
+        },
+        "price": {
+          "type": "number",
+          "label": "Price",
+          "meta": {
+            "format": "currency"
+          }
+        },
+        "weight": {
+          "type": "text",
+          "label": "Weight"
+        },
+        "sort_order": {
+          "type": "number",
+          "label": "Sort Order"
+        }
       },
       "value": [
         {
@@ -44,7 +129,7 @@
           "name": "GASTRO POP 7G PREMIUM INDOOR FLOWER",
           "category": "cat_a1b2c3",
           "brand": "PUFFY",
-          "strain_type": "INDICA",
+          "strain_type": "HYBRID",
           "thc_percentage": 31.26,
           "price": 45,
           "weight": "7g",
